@@ -1,0 +1,58 @@
+server:
+  port: 8080
+  netty:
+    connection-timeout: 2s
+spring:
+  application:
+    name: learn-undertow
+  redis:
+    password: Mm_1989321
+    timeout: 5s
+    cluster:
+      nodes:
+        - 172.28.81.93:6379
+        - 172.28.81.93:6380
+        - 172.28.81.213:6379
+        - 172.28.81.213:6380
+        - 172.28.81.217:6379
+        - 172.28.81.217:6380
+      max-redirects: 5
+    lettuce:
+      pool:
+        min-idle: 1
+        max-idle: 5
+        max-active: 8
+        max-wait: 2s
+logging:
+  level:
+    root: info
+  file:
+    total-size-cap: 10GB
+    clean-history-on-start: true
+    max-history: 7
+    max-size: 500MB
+    path: /apprun/logs/${spring.application.name}/business
+management:
+  server:
+    port: 8888
+  endpoint:
+    beans:
+      enabled: true
+    config:
+      enabled: true
+    health:
+      enabled: true
+    httptrace:
+      enabled: true
+    info:
+      enabled: true
+    loggers:
+      enabled: true
+    metrics:
+      enabled: true
+    threaddump:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: beans,config,health,httptrace,info,loggers,metrics,threaddump
